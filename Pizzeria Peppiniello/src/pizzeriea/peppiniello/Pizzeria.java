@@ -22,12 +22,10 @@ public class Pizzeria extends Thread {
     Semaphore posti;
     int postiTotali;
     int numeroEntrateRimanenti = 14;
-    int tempoDiServizio = 40;
+    int tempoDiServizio = 5;
     int tempoPerMangiare = 5;
-    int numeroTurni = tempoDiServizio / tempoPerMangiare;
     int personeEntrate;
     int numCaricoGlobale;
-    int conteggioPersoneDentro;
     int controlloCameriera;
 
     /**
@@ -44,14 +42,14 @@ public class Pizzeria extends Thread {
      * Diminuisce il numero dei posti liberi;
      *
      * @param nClienti numero dei clienti entrati;
-     * @throws InterruptedException
+     * @throws InterruptedException aquire();
      */
     public void clientiEntrati(int nClienti) throws InterruptedException {
         if (this.posti.availablePermits() == 0) {
             System.out.println("Pizzeria piena");
 
         } else if (nClienti + postiOccupati() > this.postiTotali) {
-            System.out.println(nClienti - this.postiTotali + " persona/e dovrà restare fuori perchè il numero totali dei posti a sedere è " + this.postiTotali);
+            System.out.println(((this.postiOccupati()+nClienti)-this.postiTotali) + " persona/e dovrà restare fuori perchè il numero totali dei posti a sedere è " + this.postiTotali);
             nClienti = this.postiTotali - postiOccupati();
         }
         for (int i = 0; i < nClienti; i++) {
@@ -64,7 +62,6 @@ public class Pizzeria extends Thread {
      * Aumenta il numero dei posti liberi;
      *
      * @param nClienti numero dei clienti usciti;
-     * @throws InterruptedException
      */
     public void clientiUsciti(int nClienti) {
         this.posti.release(nClienti);
@@ -114,43 +111,43 @@ public class Pizzeria extends Thread {
         @Override
         public void run() {
             try {
+                
                 if (nPersoneEntrateThread > 12) {
                     this.nPersoneEntrateThread = 12;
                 }
                 int tempoPerMangiare = numRandom(5, 7);
                 int nCaricoThread = numCaricoGlobale;
-
+                
                 clientiEntrati(nPersoneEntrateThread);
 
                 if (nPersoneEntrateThread == 1) {
                     System.out.println("Del carico " + nCaricoThread + " - " + nPersoneEntrateThread + " persona entrata.");
                 } else if (nPersoneEntrateThread > 12) {
-                    System.out.println("Del carico " + nCaricoThread + " - " + (nPersoneEntrateThread - 1) + " persona entrata.");
+                    System.out.println("Del carico " + nCaricoThread + " - " + 12 + " persona entrata.");
                 } else {
                     System.out.println("Del Carico " + nCaricoThread + " - " + nPersoneEntrateThread + " persone entrate.");
                 }
+                if (controlloCameriera == 2) {
+                    Cameriera a = new Pizzeria.Cameriera(postiOccupati(),postiLiberi());
+                    a.start();
+                    a.join();
+                }
 
                 if (postiLiberi() != 1) {
-                    System.out.println("Del Carico " + nCaricoThread + " - " + "I clienti hanno iniziato a mangiare.");
+                    System.out.println("Del Carico " + nCaricoThread + " - " + "i clienti hanno iniziato a mangiare.");
                 } else {
-                    System.out.println("Del Carico " + nCaricoThread + " - " + "Il cliente ha iniziato a mangiare.");
+                    System.out.println("Del Carico " + nCaricoThread + " - " + "il cliente ha iniziato a mangiare.");
                 }
                 TimeUnit.SECONDS.sleep(tempoPerMangiare);
 
                 if (postiLiberi() != 1) {
-                    System.out.println("Del Carico " + nCaricoThread + " - " + "I clienti hanno finito di mangiare.");
+                    System.out.println("Del Carico " + nCaricoThread + " - " + "i clienti hanno finito di mangiare.");
                 } else {
-                    System.out.println("Del Carico " + nCaricoThread + " - " + "Il cliente ha finito di mangiare.");
+                    System.out.println("Del Carico " + nCaricoThread + " - " + "il cliente ha finito di mangiare.");
                 }
-                clientiUsciti(personeEntrate);
+                clientiUsciti(nPersoneEntrateThread);
                 System.out.println("Del Carico " + nCaricoThread + " - " + nPersoneEntrateThread + " persone uscite.");
-                if (controlloCameriera == 2) {
-                    conteggioPersoneDentro += personeEntrate;
-                    Cameriera a = new Pizzeria.Cameriera(conteggioPersoneDentro, 12 - conteggioPersoneDentro);
-                    a.start();
-                    a.join();
-                    conteggioPersoneDentro -= personeEntrate;
-                }
+                
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Pizzeria.class.getName()).log(Level.SEVERE, null, ex);
