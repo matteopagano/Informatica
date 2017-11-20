@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 public class Pizzeria extends Thread {
 
     Semaphore posti;
+    String nomePizzeria;
     int postiTotali;
     int numeroEntrateRimanenti = 14;
     int tempoDiServizio = 5;
@@ -33,9 +34,10 @@ public class Pizzeria extends Thread {
      *
      * @param postiTotali Numero tot. dei posti a sedere;
      */
-    public Pizzeria(int postiTotali) {
+    public Pizzeria(int postiTotali,String nomePizzeria) {
         this.posti = new Semaphore(postiTotali);
         this.postiTotali = postiTotali;
+        this.nomePizzeria=nomePizzeria;
     }
 
     /**
@@ -72,7 +74,9 @@ public class Pizzeria extends Thread {
      */
     @Override
     public void run() {
-
+        System.out.println("Pizzeria "+this.nomePizzeria);
+        System.out.println("Posti a sedere totali: "+this.postiTotali+" -- Tempo di servizio: "+this.tempoDiServizio+" secondi.");
+        
         try {
             for (int i = 1; numeroEntrateRimanenti != 0; i++) {
                 this.tempoPerMangiare=numRandom(5,7);
@@ -187,7 +191,8 @@ public class Pizzeria extends Thread {
     }
 
     public static void main(String[] args) {
-        Pizzeria Peppiniello = new Pizzeria(12);
+        Pizzeria Peppiniello = new Pizzeria(12,"Peppiniello");
         Peppiniello.start();
+        
     }
 }
