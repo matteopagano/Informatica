@@ -19,20 +19,21 @@ import java.util.logging.Logger;
  */
 public class Pizzeria extends Thread {
 
-    Semaphore posti;
-    String nomePizzeria;
-    int postiTotali;
-    int numeroEntrateRimanenti = 14;
-    int tempoDiServizio = 5;
-    int tempoPerMangiare = 5;
-    int personeEntrate;
-    int numCaricoGlobale;
-    int controlloCameriera;
+    private final Semaphore posti;
+    private final String nomePizzeria;
+    private final int postiTotali;
+    private int numeroEntrateRimanenti = 14;
+    private final int tempoDiServizio = 5;
+    private int tempoPerMangiare = 5;
+    private int personeEntrate;
+    private int numCaricoGlobale;
+    private int controlloCameriera;
 
     /**
      * Crea un Oggetto di tipo Pizzeria;
      *
      * @param postiTotali Numero tot. dei posti a sedere;
+	 * @param nomePizzeria Nome della pizzeria;
      */
     public Pizzeria(int postiTotali,String nomePizzeria) {
         this.posti = new Semaphore(postiTotali);
