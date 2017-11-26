@@ -1,120 +1,48 @@
 package alberobindiricerca;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import alberobindiricerca.AlberoBin.NodoConcDopp;
+
+
+
+
 
 /**
  *
  * @author matteo.pagano
  */
 public class AlberoBinDiRicerca {
-    private NodoConcDopp<Comparable> root;
 
-    public void add(Comparable arg) {
-        if (root == null) {
-            root = new NodoConcDopp(arg, null, null);
-            return;
-        }
-        NodoConcDopp<Comparable> tmp = root;
-        boolean destra = arg.compareTo(tmp.info) > 0;
-        while ((destra ? tmp.right : tmp.left) != null) {
-            tmp = destra ? tmp.right : tmp.left;
-            destra = arg.compareTo(tmp.info) > 0;
-        }
-        if (destra) {
-            tmp.right = new NodoConcDopp(arg, null, null);
+    AlberoBin albero;
+
+    public AlberoBinDiRicerca(AlberoBin a) {
+        this.albero = a;
+    }
+
+    public boolean search(Comparable e) {
+        return searchRic(albero.getRoot(), e);
+    }
+
+    private static boolean searchRic(NodoConcDopp a, Comparable e) {
+        if (a == null) {
+            return false;
+        } else if (a.info.equals(e)) {
+            return true;
+        } else if (e.compareTo(a.info) < 0) {
+            return searchRic(a.left, e);
         } else {
-            tmp.left = new NodoConcDopp(arg, null, null);
+            return searchRic(a.right, e);
         }
     }
 
-    public boolean isEmpty() {
-        return root.info == null;
-    }
-
-    public ArrayList<Comparable> visitaAnticipata() {
-        ArrayList<Comparable> results = new ArrayList();
-        visitaAnticipata(results, root);
-        return results;
-    }
-
-    public void visitaAnticipata(ArrayList<Comparable> results, NodoConcDopp<Comparable> nodo) {
-        if (!isEmpty()) {
-            results.add(nodo.info);
-            if (nodo.left != null) {
-                visitaAnticipata(results, nodo.left);
-            }
-            if (nodo.right != null) {
-                visitaAnticipata(results, nodo.right);
-            }
-        }
-    }
-
-    public ArrayList<Comparable> visitaDifferita() {
-        ArrayList<Comparable> results = new ArrayList();
-        visitaDifferita(results, root);
-        return results;
-    }
-
-    public void visitaDifferita(ArrayList<Comparable> results, NodoConcDopp<Comparable> nodo) {
-        if (!isEmpty()) {
-            if (nodo.right != null) {
-                visitaDifferita(results, nodo.right);
-            }
-            if (nodo.left != null) {
-                visitaDifferita(results, nodo.left);
-            }
-            results.add(nodo.info);
-        }
-    }
-
-    public ArrayList<Comparable> visitaSimmetrica() {
-        ArrayList<Comparable> results = new ArrayList();
-        visitaSimmetrica(results, root);
-        return results;
-    }
-
-    private void visitaSimmetrica(ArrayList<Comparable> results, NodoConcDopp<Comparable> nodo) {
-        if (!isEmpty()) {
-            if (nodo.left != null) {
-                visitaSimmetrica(results, nodo.left);
-            }
-            results.add(nodo.info);
-            if (nodo.right != null) {
-                visitaSimmetrica(results, nodo.right);
-            }
-        }
-    }
-
-    public void search(Object x) {
-        boolean t = false;
-        ArrayList a = visitaSimmetrica();
-        for (int i = 0; i < a.size(); i++) {
-            if (a.get(i) == x) {
-                t = true;
-            }
-        }
-        if (t) {
-            System.out.println("There is " + x);
-        } else {
-            System.out.println("There isn't " + x);
-        }
-    }
-
-    public void inserisciElementiFile(String pathFile) {
-        Scanner scan = null;
-        File file = new File(pathFile);
-        try {
-            scan = new Scanner(file);
-            while (scan.hasNextLine()) {
-                add(scan.nextLine());
-            }
-        } catch (FileNotFoundException ex) {
-            System.out.println("File non trovato");
-        }
-
+    public static void main(String[] args){
+        AlberoBin a=new AlberoBin();
+        a.add(1);
+        a.add(2);
+        a.add(3);
+        a.add(4);
+        AlberoBinDiRicerca b=new AlberoBinDiRicerca(a);
+        System.out.println(b.search(3));
+        System.out.println(b.search(5));
+        
     }
 }
-

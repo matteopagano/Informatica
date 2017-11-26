@@ -24,7 +24,7 @@ public class Pizzeria extends Thread {
     private final int postiTotali;
     private int numeroEntrateRimanenti = 14;
     private final int tempoDiServizio = 5;
-    private int tempoPerMangiare = 5;
+    private int tempoPerMangiare;
     private int personeEntrate;
     private int numCaricoGlobale;
     private int controlloCameriera;
@@ -55,7 +55,7 @@ public class Pizzeria extends Thread {
             System.out.println(((this.postiOccupati()+nClienti)-this.postiTotali) + " persona/e dovrà restare fuori perchè il numero totali dei posti a sedere è " + this.postiTotali);
             nClienti = this.postiTotali - postiOccupati();
         }
-        for (int i = 0; i < nClienti; i++) {
+        for (int i = 0; i < nClienti; i++){
             this.posti.acquire();
         }
 
@@ -120,7 +120,7 @@ public class Pizzeria extends Thread {
                 if (nPersoneEntrateThread > 12) {
                     this.nPersoneEntrateThread = 12;
                 }
-                int tempoPerMangiare = numRandom(5, 7);
+                tempoPerMangiare = numRandom(5, 7);
                 int nCaricoThread = numCaricoGlobale;
                 
                 clientiEntrati(nPersoneEntrateThread);

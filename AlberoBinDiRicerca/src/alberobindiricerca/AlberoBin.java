@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alberobin;
+package alberobindiricerca;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -121,11 +121,11 @@ public class AlberoBin {
 
     }
 
-    public void inserisciArray(ArrayList<Comparable> array) {
-        for (int i = 0; i < array.size(); i++) {
-            add(array.get(i));
-        }
+    public NodoConcDopp<Comparable> getRoot() {
+        return root;
     }
+    
+
 
     public class NodoConcDopp<Comparable> {
 

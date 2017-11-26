@@ -1,14 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package alberobin;
+
+import java.util.ArrayList;
 
 /**
  *
- * @author matteo.pagano
+ * @author matteo
  */
 public class main {
-	public static void main(String[] args){
-			AlberoBin a=new AlberoBin(4, new AlberoBin(9, new AlberoBin (10, null, null), new AlberoBin(8, null, new AlberoBin(6, new AlberoBin(7, null, null), new AlberoBin(5, null, null)))), new AlberoBin(2, new AlberoBin(3, null, null), new AlberoBin(1, null, null)));
-		
-			
-			a.visitaAnticipata();
-	}
+    public static void main(String[] args){
+        AlberoBin a=new AlberoBin();
+        
+    }
 }
