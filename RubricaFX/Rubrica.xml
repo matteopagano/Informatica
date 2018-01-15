@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persons>
+    <person>
+        <birthday>2000-08-02</birthday>
+        <city>Martellago</city>
+        <firstName>Matteo</firstName>
+        <lastName>Pagano</lastName>
+        <postalCode>30030</postalCode>
+        <street>Via Calandrine 17</street>
+    </person>
+</persons>
