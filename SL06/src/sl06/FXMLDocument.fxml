@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="paginaServer" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sl06.FXMLDocumentController">
+	<children>
+      <AnchorPane fx:id="paginaLogin" prefHeight="300.0" prefWidth="450.0">
+         <children>
+            <TextField fx:id="password" layoutX="14.0" layoutY="29.0" promptText="Password" />
+            <TextField fx:id="name" layoutX="14.0" layoutY="82.0" promptText="Name" />
+            <Button layoutX="14.0" layoutY="116.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="149.0" text="Login" />
+         </children></AnchorPane>
+		<Button fx:id="button" layoutX="176.0" layoutY="20.0" onAction="#connect" prefHeight="38.0" prefWidth="149.0" text="ConnectServer" />
+      <TextField fx:id="ip" layoutX="14.0" layoutY="14.0" promptText="192.168.4.250" />
+      <TextField fx:id="port" layoutX="14.0" layoutY="54.0" promptText="110" />
+	</children>
+</AnchorPane>

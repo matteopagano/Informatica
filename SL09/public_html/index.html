@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="newjavascript.js"></script>
+    </head>
+    <body>
+        <form>
+            Cognome<br> <input type="text" id="cognome" maxlength="40"><br>
+            Nome <br><input type="text" id="nome" maxlength="30"><br>
+            Matricola <br><input type="number" id="matricola" maxlength="12"><br>
+            Regione <br><select id="regione">
+                <option>None</option>
+                <option>Abruzzo</option>
+                <option>Basilicata</option>
+                <option>Calabria</option>
+                <option>Campania</option>
+                <option>Emilia-Romagna</option>
+                <option>Friuli-Venezia-Giulia</option>
+                <option>Lazio</option>
+                <option>Liguria</option>
+                <option>Lombardia</option>
+                <option>Marche</option>
+                <option>Molise</option>
+                <option>Piemonte</option>
+                <option>Puglia</option>
+                <option>Sardegna</option>
+                <option>Sicilia</option>
+                <option>Toscana</option>
+                <option>Trentino-Alto Adige</option>
+                <option>Umbria</option>
+                <option>Valle D'aosta</option>
+                <option>Veneto</option>
+            </select><br>
+            E-Mail <br><input type="text" id="mail" maxlength="30"><br>
+            Telefono <br><input type="text" id="telefono" maxlength="15"><br>
+            Richieste Particolari<br><textarea id="richiesteparticolari" rows="12" cols="60"></textarea>
+            <br><button id="Invio" onclick="invia()">Invio</button>
+            <button id="Reset">Reset</button>
+        </form>
+        <script>
+            getView()
+        </script>
+    </body>
+</html>
