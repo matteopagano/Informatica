@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            class wether{
+                static loadWether(citta,paese){
+                    let http=new XMLHttpRequest();
+                    http.onreadystatechange = function () {
+					if (this.readyState == 4 && this.status == 200) {
+						let info=JSON.parse(http.responseText);
+						document.getElementById("temperatura").innerHTML=info.main.temp;
+						document.getElementById("umidità").innerHTML=info.main.humidity;
+						document.getElementById("pressione").innerHTML=info.main.pressure;
+					}
+				};
+                    http.open("GET", "http://api.openweathermap.org/data/2.5/weather?q="+citta+","+paese+"&APPID=209a1816d8e3783a3c3b5e8ec118424f", true);
+                    http.send();
+                    }
+                }
+            
+                function getWether(){
+                    wether.loadWether(document.getElementById("city").value+"",document.getElementById("state").value+"");
+                }
+            
+        </script>
+    </head>
+    <body>
+        <div style="color:red;float: left;">
+            Città <input type="text" id="city" ><br><br>
+            Stato <input type="text" id="state" ><br><br>
+            <button onclick="getWether()">calcola</button><br><br>
+        </div>
+        
+        <div style="float: right;margin-right: 60px">
+            pressione: <label id="pressione"></label><br>
+            temperatura: <label id="temperatura"></label><br>
+            umidità: <label id="umidità"></label><br>
+            
+        </div>
+    </body>
+</html>
