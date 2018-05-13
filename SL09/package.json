@@ -1,8 +1,8 @@
 {
-    "name": "SL07",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "metiu",
-    "contributors": [],
-    "dependencies": {}
+	"name": "SitoCalcoloCodiceFiscale",
+	"version": "1.0.0",
+	"keywords": ["util", "functional", "server", "client", "browser"],
+	"author": "marco.pistollato",
+	"contributors": [],
+	"dependencies": {}
 }

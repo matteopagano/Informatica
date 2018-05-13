@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 module.exports = function (grunt) {
-    // Project configuration.
-    grunt.initConfig({
-    });
+	// Project configuration.
+	grunt.initConfig({
+	});
 };

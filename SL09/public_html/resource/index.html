@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Calcolo codice fiscale</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		
+		<!-- fogli di stile e di script -->
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script language="javascript" src="script.js"></script>
+		
+	</head>
+	<body>
+		<header>
+			<h1>Calcolo del codice fiscale</h1>
+		</header>
+		
+		<br> <br>
+		<form name="registrazione" method="post" action="/send"> 
+				Calcolo codice fiscale
+				<p> 
+					<label>Cognome</label> <br> 
+					<input id="cognome" name="nome" placeholder="inserire cognome" size="40" required> 
+				</p> 
+				<p> 
+					<label>Nome</label> <br> 
+					<input id="nome" name="nome" placeholder="inserire il nome" size="40" required> 
+				</p> 
+				<p> 
+					<label>Sesso</label> <br> 
+					M <input type="radio" name="sceltaSesso" id="male">
+					F <input type="radio" name="sceltaSesso" id="female"> 
+				</p>
+				
+				<p>
+					<label>Data di nascita</label> <br>
+					<input type="date" id="data" size="40">
+				</p>
+				
+				
+				<p> 
+					<label>Luogo di nascita</label> <br> 
+					<input id="luogo" name="luogo" placeholder="comune o Stato estero" size="40"> 
+				</p> 
+				
+				<p> 
+                                    <input type="button" name="registra" value="Calcola" onclick="calcola()"> 
+					
+				</p>
+		</form> 
+
+	</body>
+</html>
