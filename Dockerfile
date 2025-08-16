@@ -1,3 +1,2 @@
 FROM busybox
-
-CMD ["echo", "Hello from Kaniko"]
+CMD ["echo", "Hello from Kaniko pt 1"]
